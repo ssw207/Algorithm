@@ -1,0 +1,4 @@
+*.classpath
+DataStructure/bin/
+DataStructure/.settings/
+*.project
