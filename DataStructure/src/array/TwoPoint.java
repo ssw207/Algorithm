@@ -1,4 +1,5 @@
-package array
+package array;
+
 public class TwoPoint {
     /*
     부분합이 M과 일치하는 개수 구하기

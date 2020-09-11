@@ -2,3 +2,12 @@
 DataStructure/bin/
 DataStructure/.settings/
 *.project
+*.class
+.idea/checkstyle-idea.xml
+Algorism.iml
+.idea/.gitignore
+.idea/compiler.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/uiDesigner.xml
+.idea/vcs.xml
