@@ -1,6 +1,8 @@
 package prac.programers.lv1;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 문제 링크 : https://programmers.co.kr/learn/courses/30/lessons/77484
@@ -28,41 +30,41 @@ public class Lotto {
    5.맞춘갯수에 따라 등수환산
    */
     public int[] solution(int[] lottos, int[] win_nums) {
+        //0을제외한 당첨번호 map
+        //Map의 contains 매소드는 상수시간 복잡도를 가지므로 사용
+        Map<Integer, Integer> lottosMap = new HashMap<>();
+
         //1
         int cntZero = 0;
-        for (int i = 0; i < lottos.length; i++) {
-            if (lottos[i] == 0) {
+        for (int lotto : lottos) {
+            if (lotto == 0) {
                 cntZero++;
             }
+
+            lottosMap.put(lotto, 0); //key가 있는지만 체크하면되므로 value는 임의값을 넣어줌
         }
+
         System.out.println(String.format("cntZero %d", cntZero));
+
         //2
         int cntMatch = 0;
-        for (int i = 0; i < lottos.length; i++) {
-            for (int j = 0; j < win_nums.length; j++) {
-                if (lottos[i] == win_nums[j]) {
-                    cntMatch++;
-                }
+        for (int num : win_nums) {
+            //당첨번호가 있는지 검증 (상수시간 복잡도)
+            if (lottosMap.containsKey(num)) {
+                cntMatch++;
             }
         }
+
         System.out.println(String.format("cntMatch %d", cntMatch));
 
         //3
-        int cntMax = cntMatch + cntZero;
-        int cntMin = cntMatch;
+        int maxRank = 7 - (cntMatch + cntZero);
+        int minRank = 7 - cntMatch;
 
-        return new int[] {convertToGrade(cntMax), convertToGrade(cntMin)};
-    }
+        //0이 없고, 일치하는갯수가 0인경우 7등이 나오므로 보정처리함
+        if (maxRank > 6) maxRank = 6;
+        if(minRank > 6) minRank = 6;
 
-    public int convertToGrade(int cntMatch) {
-        switch (cntMatch) {
-            case 6: return 1;
-            case 5: return 2;
-            case 4: return 3;
-            case 3: return 4;
-            case 2: return 5;
-            default : return 6;
-        }
-
+        return new int[] {maxRank, minRank};
     }
 }
