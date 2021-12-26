@@ -7,47 +7,56 @@ import java.util.List;
 
 //https://programmers.co.kr/learn/courses/30/lessons/42840
 public class 모의고사 {
-    //사람별 찍는 패턴
-    private static int[] choice1 = {1, 2, 3, 4, 5};
-    private static int[] choice2 = {2, 1, 2, 3, 2, 4, 2, 5};
-    private static int[] choice3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
-
     public static void main(String[] args) {
         모의고사 init = new 모의고사();
         int[] answers = {1,2,3,4,5};
         System.out.println(Arrays.toString(init.solution(answers)));
     }
 
-    public int[] solution(int[] answers) {
-        //정답수
-        int match1 = 0;
-        int match2 = 0;
-        int match3 = 0;
+    //지원자별 찍는 패턴
+    private static int[][] choices = {
+            {1, 2, 3, 4, 5},
+            {2, 1, 2, 3, 2, 4, 2, 5},
+            {3, 3, 1, 1, 2, 2, 4, 4, 5, 5}
+    };
 
-        //사람별 정답 체크
+    public int[] solution(int[] answers) {
+        //지원자 정답수 배열
+        int[] matchs = new int[3];
+
+        //정답 체크
         for (int i = 0; i < answers.length; i++) {
             int answer = answers[i];
-            //무한으로 순회하기 위해 찍는개수만큼 모듈러스처리
-            if (choice1[i % 5] == answer) match1 ++;
-            if (choice2[i % 8] == answer) match2 ++;
-            if (choice3[i % 10] == answer) match3 ++;
+
+            //사람별 정답체크
+            for (int j = 0; j < matchs.length; j++) {
+                int[] choice = choices[j]; // j번째 사람이 선택한 답 배열
+                int choiceOne = choice[i % choice.length]; // i번 문제에 j번사람이 선택한 답
+
+                if (answer == choiceOne) {
+                    matchs[j] = matchs[j] + 1; // 정답인경우 j번째사람 정답수 + 1
+                }
+            }
         }
 
         //최대 정답수 체크
         int max = 0;
-        max = (match1 > match2) ? match1 : match2;
-        max = (max > match3) ? max : match3;
+        for (int match : matchs) {
+            max = Integer.max(max, match);
+        }
 
         List<Integer> list = new ArrayList<>();
-        if (max == match1) list.add(1);
-        if (max == match2) list.add(2);
-        if (max == match3) list.add(3);
+        for (int i = 0; i < matchs.length ; i++) {
+            //i번재 사람이 최대점수인경우
+            if (matchs[i] == max) {
+                list.add(i+1);
+            }
+        }
 
         int[] result = new int[list.size()];
         for (int i = 0; i < list.size(); i++) {
             result[i] = list.get(i);
         }
-
         return result;
     }
 }
