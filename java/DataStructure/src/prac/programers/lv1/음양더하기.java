@@ -13,7 +13,7 @@ public class 음양더하기 {
     public int solution(int[] numbers, boolean[] signs) {
         int total = 0;
         for (int i = 0; i < numbers.length; i++) {
-            int num = (signs[i]) ? numbers[i] : Integer.parseInt("-" + numbers[i]) ;
+            int num = (signs[i]) ? numbers[i] : numbers[i] * -1 ;
             total += num;
         }
 
