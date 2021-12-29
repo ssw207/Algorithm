@@ -10,51 +10,60 @@ public class 체육복 {
         체육복 init = new 체육복();
         int n = 5; //학생수 2 ~ 30
         int[] lost = {2, 4}; //도난다한 학생수 1 ~ n, 중복X
-        int[] reserve = {3}; //여벌이있는사람이 도난가능,
+        int[] reserve = {1,3,5}; //여벌이있는사람이 도난당한 사람이면 못빌려줌
 
         int result = init.solution(n, lost, reserve);
         System.out.println(result);
     }
-
     public int solution(int n, int[] lost, int[] reserve) {
+        /*
+            n명 만큼 사람 배열생성
+            0 : 옷을 잃어버렸지만 여벌이 있는사람
+            -1 : 옷을 잃어버린사람
+            1 : 옷도 안잃어버리고 여벌도 있는사람
+         */
+        int[] persons = new int[n];
 
-        Map<Integer,String> reserveMap = new HashMap<>();
-        for (int i : reserve) {
-            reserveMap.put(i,"");
-        }
-
-        int cntBorrow = 0;
-
-        //잃어버린 사람수만큼 반복
+        //옷을 잃어버린사람은 배열에서 -1
         for (int i = 0; i < lost.length; i++) {
-            //잃어버린 사람의 번호확인
-            int numLost = lost[i];
-
-            //빌릴수 있는사람 확인 - 잃어 버린 사람의 앞뒤 번호 확인
-            int numBorrowFront = numLost - 1;
-            int numBorrowBack = numLost + 1;
-
-            //앞사람한테 빌리기
-            String isExists = "";
-            if (numBorrowFront > 0) {
-                isExists = reserveMap.get(numBorrowFront);
-                if (isExists != null) {
-                    cntBorrow++;
-                    reserveMap.remove(numBorrowFront);
-                    continue;
-                }
-            }
-
-            //뒷사람한테 빌리기
-            if (numBorrowBack <= n) {
-                isExists = reserveMap.get(numBorrowBack);
-                if (isExists != null) {
-                    cntBorrow++;
-                    reserveMap.remove(numBorrowBack);
-                }
-            }
+            int personNum = lost[i];
+            persons[personNum - 1]--; // 사람의 인덱스는 personNum - 1
         }
-        //전체체육복이 있는사람 = 전체사람수 - 잃어버린사람수 + 빌린사람수
-        return n - lost.length + cntBorrow;
+
+        //여벌옷이 있는사람은 배열에서 +1
+        for (int i = 0; i < reserve.length; i++) {
+            int personNum = reserve[i];
+            persons[personNum - 1]++; // 사람의 인덱스는 personNum - 1
+        }
+
+        //옷빌리기
+        for (int i = 0; i < persons.length; i++) {
+            int cnt = persons[i];
+            int beforePersonNum = i - 1;
+            int afterPersonNum = i + 1;
+
+            //옷을 빌릴 필요가 없는 사람이면 스킵
+            if (persons[i] > -1) {
+                continue;
+            }
+
+            //앞사람이 있고 빌려줄 옷이 있으면 빌리기
+            if (beforePersonNum >= 0 && persons[beforePersonNum] == 1) {
+                persons[beforePersonNum]--;
+                persons[i]++;
+                continue;
+            }
+
+            //뒷사람이 있고 빌려줄 옷이 있으면 빌리기
+            if (afterPersonNum < persons.length && persons[afterPersonNum] == 1) {
+                persons[afterPersonNum]--;
+                persons[i]++;
+                continue;
+            }
+
+            //옷을 못빌린경우
+            n--;
+        }
+        return n;
     }
 }
