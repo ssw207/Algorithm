@@ -38,12 +38,12 @@ public class 체육복 {
 
         //옷빌리기
         for (int i = 0; i < persons.length; i++) {
-            int cnt = persons[i];
-            int beforePersonNum = i - 1;
-            int afterPersonNum = i + 1;
+            int cnt = persons[i]; // i번째 사람이 가진 여벌옷 수
+            int beforePersonNum = i - 1; // i번째 사람의 앞사람
+            int afterPersonNum = i + 1; // i번째 사람의 뒷사람
 
             //옷을 빌릴 필요가 없는 사람이면 스킵
-            if (persons[i] > -1) {
+            if (cnt > -1) {
                 continue;
             }
 
