@@ -20,16 +20,11 @@ public class 폰켓몬 {
        3.최대한 많은종류를 가져가야함
     */
     public int solution(int[] nums) {
-        //가져갈수 있는 최대수
-        int max = nums.length / 2; //항상짝수
+        return Arrays.stream(nums)
+                .boxed() // Intger변환
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toSet() // Set으로 변환
+                        , (monsterKindSet) -> Integer.min(monsterKindSet.size(), nums.length / 2))); //폰켓몬종류가 가져갈수 있는 최대 숫자보다 크면 최대수 리턴 아니면 종류 리턴
 
-        //중복제거
-        Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet());
-
-        //폰켓몬 종류
-        int kinds = set.size();
-
-        //폰켓몬종류가 가져갈수 있는 최대 숫자보다 크면 최대수 리턴 아니면 종류 리턴
-        return (max < kinds) ? max : kinds;
     }
 }
