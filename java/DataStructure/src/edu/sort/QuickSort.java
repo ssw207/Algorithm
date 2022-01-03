@@ -1,8 +1,6 @@
-package sort;
+package edu.sort;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class QuickSort {
 	private int[] arr;

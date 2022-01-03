@@ -1,4 +1,4 @@
-package array;
+package edu.array;
 
 public class TwoPoint {
     /*

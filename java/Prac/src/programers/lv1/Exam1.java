@@ -7,17 +7,17 @@ import java.util.Map;
 /**
  * 문제 링크 : https://programmers.co.kr/learn/courses/30/lessons/77484
  */
-public class Lotto {
+public class Exam1 {
     /*
     win_nums : 당첨번호 6자리, 중복없음, 정렬없음
     lottos : 선택한번호 6자리, 0은 알아볼수 없는숫자, 중복없음, 정렬안됨
     return [최고순위 ,최저순위]
     */
     public static void main(String[] args) {
-        Lotto lotto = new Lotto();
+        Exam1 exam1 = new Exam1();
         int[] lottos = {44, 1, 0, 0, 31, 25};
         int[] win_nums = {31, 10, 45, 1, 6, 19};
-        int[] result = lotto.solution(lottos, win_nums);
+        int[] result = exam1.solution(lottos, win_nums);
 
         System.out.println(String.format("result : %s", Arrays.toString(result)));
     }

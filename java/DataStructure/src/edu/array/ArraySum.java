@@ -1,6 +1,5 @@
-package array;
+package edu.array;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class ArraySum {
