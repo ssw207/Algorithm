@@ -68,7 +68,7 @@ public class 조이스틱 {
         //name중 바궈야하는 name index
         for (int i = 0; i < nameChars.length; i++) {
             if (nameChars[i] == 'A') {
-                continue;;
+                continue;
             }
             int next = i + 1;
 
