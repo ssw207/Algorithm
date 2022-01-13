@@ -45,7 +45,12 @@ public class 조이스틱 {
      * @return
      */
     private int getMovesLeftRight(String name) {
-        boolean[] check = new boolean[name.length()];
+
+        int rightFirstA = name.indexOf("A");
+        int rightLastA = name.lastIndexOf("A");
+
+        int rightFirstNonA = rightFirstA + 1;
+        int rightLastNonA = rightLastA + 1;
 
         int pos = 0; //현재위치
         return 0;
@@ -61,10 +66,10 @@ public class 조이스틱 {
         return sum;
     }
 
-
     //시작위치는 0 고정되어있으므로 목표 문자열까지의 거리는 고정임
-    public Map<Character,Integer> getAlphaMap() {
+    private Map<Character,Integer> getAlphaMap() {
         Map<Character, Integer> map = new HashMap<>();
+        //위로이동시 A ~ M
         map.put('A', 0);
         map.put('B', 1);
         map.put('C', 2);
@@ -78,7 +83,11 @@ public class 조이스틱 {
         map.put('K', 10);
         map.put('L', 11);
         map.put('M', 12);
+        
+        //어느쪽이든 같음
         map.put('N', 13);
+
+        //아래로이동시 Z ~ O
         map.put('O', 12);
         map.put('P', 11);
         map.put('Q', 10);

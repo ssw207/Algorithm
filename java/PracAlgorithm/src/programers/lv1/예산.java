@@ -7,21 +7,29 @@ import java.util.stream.Collectors;
 public class 예산 {
     public static void main(String[] args) {
         예산 init = new 예산();
-        int[] nums = {3,1,2,3}; // 항상짝수
-        int result = init.solution(nums);
+        int[] nums = {1,3,2}; // 항상짝수
+        int budget = 9;
+        int result = init.solution(nums, budget);
         System.out.println(result);
     }
-    /*
-       1.총 n/2만큼 가져갈수 있음
-       2.번호가 같으면 같은 폰켓몬
-       3.최대한 많은종류를 가져가야함
-    */
-    public int solution(int[] nums) {
-        return Arrays.stream(nums)
-                .boxed() // Intger변환
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toSet() // Set으로 변환
-                        , (monsterKindSet) -> Integer.min(monsterKindSet.size(), nums.length / 2))); //폰켓몬종류가 가져갈수 있는 최대 숫자보다 크면 최대수 리턴 아니면 종류 리턴
 
+    public int solution(int[] d, int budget) {
+        int cntBuy = 0;
+
+        //조합 3!
+        for (int i = 0; i < d.length; i++) {
+            for (int j = i+1; j < d.length; j++) {
+                for (int k = j+1; k < d.length; k++) {
+                    int sum = d[i] + d[j] + d[k];
+
+                    if (budget > sum) {
+                        cntBuy++;
+                        //System.out.println(String.format("i(%s) + j(%s) + k(%s) = (%s) vs 예산(%s) 구매수(%s)", d[i],d[j],d[k],sum,budget,cntBuy));
+                    }
+                    System.out.println(String.format("i(%s) + j(%s) + k(%s)", i,j,k));
+                }
+            }
+        }
+        return cntBuy;
     }
 }
