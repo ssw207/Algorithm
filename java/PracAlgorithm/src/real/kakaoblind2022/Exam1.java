@@ -33,6 +33,7 @@ public class Exam1 {
 
     /**
      * 신고정보를 map으로 반환
+     * TODO 이미 신고한지 체크하지 않고 신고자를 List가 아니라 Set으로 처리하면 중복체크를 하지 않아도됨. 중복일경우 스킵하는게 성능상 약간이라도 이득이지만 set으로 처리하는게 코드가더 짧다.
      */
     private Map<String, List<String>> getReportMap(String[] reports) {
         Map<String, Integer> dupReportMap = new HashMap();
@@ -60,10 +61,7 @@ public class Exam1 {
         String reporter = reportInfoArr[0]; // frodo
         String respondent = reportInfoArr[1]; // frodo
 
-        List<String> reporters = reportMap.get(respondent);
-
-        if (reporters == null) reporters = new ArrayList<>(); // 초기화 되지 않은경우 객체 초기화
-
+        List<String> reporters = reportMap.getOrDefault(respondent, new ArrayList<>());
         reporters.add(reporter);
         reportMap.put(respondent, reporters);
     }
@@ -85,8 +83,8 @@ public class Exam1 {
 
                 //신고한사람에게 메일발송함
                 for (String reporter : reporters) {
-                    Integer cntSendMail = sendMailMap.get(reporter);
-                    sendMailMap.put(reporter, ((cntSendMail == null) ? 0 : cntSendMail) + 1); // 메일발송횟수 증가처리
+                    Integer cntSendMail = sendMailMap.getOrDefault(reporter, 0);
+                    sendMailMap.put(reporter, cntSendMail + 1); // 메일발송횟수 증가처리
                 }
             }
         }

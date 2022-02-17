@@ -1,4 +1,4 @@
-package edu.etc;
+package java.PracAlgorithm.src.real.real4;
 
 import java.util.ArrayList;
 import java.util.List;

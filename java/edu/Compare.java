@@ -1,13 +1,13 @@
-package edu.etc;
+package java.edu;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CompareExam {
+public class Compare {
     public static void main(String[] args) {
-        CompareExam compareExam = new CompareExam();
+        Compare compareExam = new Compare();
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(3);

@@ -1,4 +1,4 @@
-package edu.etc.prac.edu.etc;
+package edu.etc.etc;
 
 import java.util.ArrayList;
 import java.util.Comparator;
