@@ -14,7 +14,7 @@ public class LinkedList {
         //list.print();
         list.reverse();
 
-        list.print();
+        //list.print();
     }
 
     private void print() {
@@ -37,21 +37,42 @@ public class LinkedList {
 
     /**
      * TODO 단일 연결 리스트를 뒤집는 함수를 구현하라.
-     *  예) 1 -> 2 -> 3   =>   3 -> 2 -> 1
+     *  예) 1 -> 2 -> 3 -> null  =>   3 -> 2 -> 1
      *  1.현재 노드의 next 가 prev를 보게한다.
+     *  2.포인터를 이동한다
      * @return
      */
     private void reverse() {
-        LinkedNode current = this.head;
         LinkedNode prev = null;
+        LinkedNode current = this.head; // (1)
         LinkedNode next = null;
 
-        while (current != null) {
-            next = current.next; //next가 사라지지않도록 임시저장 (2)
-            current.next = prev; //next -> prev로 변경 (2 1 3)
-            //한칸씩 밀기기
-           prev = current;
-            current = next;
+        /*
+
+        1회전
+        null(P) -> 1(C) -> 2(N) -> 3 null
+        null(N) <- 1(P) -> 2(C) -> 3 null
+
+        2회전
+        null(N) <- 1(P) 2(C) -> 3 null
+        null <- 1(N) <- 2(C) -> 3 null
+        null <- 1(N) <- 2(P) -> 3(C) null
+
+        3회전
+        null <- 1(N) <- 2(P) -> 3(C) null
+        null <- 1 <- 2(N) <- 3(C) null
+        null <- 1 <- 2 <- 3(P) null(C)
+
+         */
+        int cnt = 0;
+        while (current != null) { //모두 순회하면 null이므로 current가 null이면 종료한다
+            next = current.next; //next가 사라지지않도록 임시저장 (2) / (3)
+
+            current.next = prev; // 순회 방샹을 바꾼다.
+
+            //포인터를 한칸이동한다.
+            prev = current; // (1 1 null 3 null) / (2 2 1 3 null)
+            current = next; // (1 2 null 3 null) / (2 1 1 3 null)
         }
 
         this.tail = this.head;
