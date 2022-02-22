@@ -16,7 +16,7 @@ public class LinkedList {
         list.add(new LinkedNode(4));
 
         list.print();
-        LinkedNode node = list.findFromLast2(2);
+        LinkedNode node = list.findFromLast3(2);
         System.out.println(node.number);
     }
 
@@ -81,11 +81,14 @@ public class LinkedList {
     private LinkedNode findFromLast3(int n) {
         LinkedNode left = this.head, right = this.head;
         int dis = 0;
+
+        // 1,2,3,4
         while (right.next != null) { // null이면 끝까지 순회한것
             right = right.next; // R이동
-
-            if (dis <= n) { //R이 n회만큼 순회 하지 않았으면 건너뜀
+            //2 , 1,2,3
+            if (dis < n) { //R이 n회만큼 순회 하지 않았으면 건너뜀
                 dis++;
+                System.out.println("="+dis);
                 continue;
             }
 
