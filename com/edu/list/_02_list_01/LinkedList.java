@@ -12,9 +12,9 @@ public class LinkedList {
         list.add(new LinkedNode(3));
 
         //list.print();
-        list.reverse();
-
-        //list.print();
+        //list.reverse();
+        list.reverse2();
+        list.print();
     }
 
     private void print() {
@@ -48,7 +48,6 @@ public class LinkedList {
         LinkedNode next = null;
 
         /*
-
         1회전
         null(P) -> 1(C) -> 2(N) -> 3 null
         null(N) <- 1(P) -> 2(C) -> 3 null
@@ -77,5 +76,40 @@ public class LinkedList {
 
         this.tail = this.head;
         this.head = prev;
+    }
+
+    /**
+     * 재귀방식은 문제를 작은 단위로 나눠 반복처리한다.
+     *
+     *
+     * 1 -> 2 -> 3 -> NULL
+     *
+     * 1회전
+     * 1)C의 N N이 자기자신이 되게한다 (그럼 화살표가 역순이됨)
+     * 2)C의 N이 NULL이 되게한다.
+     *      3 -> 2 -> NULL
+     *           2 -> 1 -> NULL
+     *
+     */
+    private void reverse2() {
+        LinkedNode head = this.head; //시작점 세팅
+        this.head = reverseRecursive(head); //재귀방식으로 순회
+        this.tail = head;
+    }
+
+    private LinkedNode reverseRecursive(LinkedNode node) {
+        //null이면 순회 종료하고 현재노드를 리턴함
+        if (node.next == null) {
+            return node;
+        }
+
+        // 순회시 종료조건부터 리턴되므로 가장 끝인 3 리턴
+        LinkedNode newHead = reverseRecursive(node.next);
+
+        // 현재의 다음다음이 자기자신이 되면 방향이 바뀜
+        node.next.next = node; // 1 -> 2 -> 3 -> null
+        node.next = null; // 3 -> 2 -> null
+
+        return newHead;
     }
 }
