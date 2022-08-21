@@ -1,8 +1,8 @@
 package com.prac.src.programers.lv1;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
+
 
 //https://school.programmers.co.kr/learn/courses/30/lessons/118666?language=java
 public class 성격유형검사하기 {
@@ -17,7 +17,7 @@ public class 성격유형검사하기 {
 
 class Solution {
     public String solution(String[] survey, int[] choices) {
-        Map<String, Integer> score = new LinkedHashMap<>();
+        Map<String, Integer> score = new HashMap<>();
 
 
         for (int i = 0; i < survey.length; i++) {
@@ -30,9 +30,11 @@ class Solution {
             }
 
             if (num < 4) {
-                score.put(s.substring(0, 1), convertToScore(num));
+                String key = s.substring(0, 1);
+                score.put(key, score.getOrDefault(key, 0) + convertToScore(num));
             } else {
-                score.put(s.substring(1, 2), convertToScore(num));
+                String key = s.substring(1, 2);
+                score.put(key, score.getOrDefault(key, 0) + convertToScore(num));
             }
         }
 
@@ -58,16 +60,16 @@ class Solution {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < group1.length; i++) {
-            Integer scoure1 = score.getOrDefault(group1[i], 0);
-            Integer scoure2 = score.getOrDefault(group1[i], 0);
+            Integer score1 = score.getOrDefault(group1[i], 0);
+            Integer score2 = score.getOrDefault(group2[i], 0);
 
-            int diff = scoure2 - scoure1;
+            int diff = score2 - score1;
             if (diff == 0) {
-                sb.append(group1[i].compareTo(group2[i]));
+                sb.append((group1[i].compareTo(group2[i]) > 0) ? group2[i] : group1[i]);
                 continue;
             }
 
-            sb.append(diff > 0 ? scoure1 : scoure2);
+            sb.append(diff > 0 ? group2[i] : group1[i]);
         }
 
         return sb.toString();
