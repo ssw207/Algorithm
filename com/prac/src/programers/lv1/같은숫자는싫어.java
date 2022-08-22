@@ -22,13 +22,7 @@ public class 같은숫자는싫어 {
                 }
             }
 
-            int[] result = new int[stack.size()];
-            int size = stack.size();
-            for (int i = 0; i < size; i++) {
-                result[size -1 - i] = stack.pop();
-            }
-
-            return result;
+            return stack.stream().mapToInt(Integer::intValue).toArray();
         }
     }
 }
