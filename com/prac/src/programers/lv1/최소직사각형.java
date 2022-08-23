@@ -26,7 +26,7 @@ public class 최소직사각형 {
             int widthMax = 0;
             int heightMax = 0;
             for (int[] size : sizes) {
-                widthMax = Math.max(Math.max(size[0], size[1]),  widthMax);
+                widthMax = Math.max(size[0], widthMax);
                 heightMax = Math.max(size[1], heightMax);
             }
 
