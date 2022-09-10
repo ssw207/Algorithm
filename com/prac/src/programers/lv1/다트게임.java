@@ -25,18 +25,21 @@ public class 다트게임 {
                 }
 
                 Integer num = Integer.valueOf(toCalcNumberStr);
-                Optional<BONUS> value = BONUS.getValue(c);
-                Optional<BONUS> value = BONUS.getValue(c);
+                if (num == 0) {
+                    continue;
+                }
 
-                if (value.isPresent()) {
-                    result += Math.pow(num, c);
+                Optional<BONUS> bonus = BONUS.getValue(c);
+                Optional<OPTION> option = OPTION.getValue(c);
 
-                    if (i != (dartResult.length() -1)
-                            && OPTION.contains(dartResult.charAt(i+1))) {
-                        toCalcNumberStr = "";
-                    }
-                } else if (OPTION.contains(c + "")) {
-                    num;
+                if (bonus.isPresent()) {
+                    result += Math.pow(num, bonus.get().value);
+                } else if (option.isPresent()) {
+                    result += num * option.get().value;
+                }
+
+                if (i != (dartResult.length() -1)
+                        && Character.isDigit(dartResult.charAt(i+1))) {
                     toCalcNumberStr = "";
                 }
             }

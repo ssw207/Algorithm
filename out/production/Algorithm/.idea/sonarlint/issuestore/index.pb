@@ -24,3 +24,5 @@ i
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+f
+6com/prac/src/programers/lv1/같은숫자는싫어.java,0\f\0fba46d8e088c564c03cb60fd912d6b95ab8dcf3
