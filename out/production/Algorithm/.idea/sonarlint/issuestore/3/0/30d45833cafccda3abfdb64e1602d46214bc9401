@@ -1,0 +1,6 @@
+
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ÐÏÀ¤
+M
+java:S11178"7Rename "head" which hides the field declared at line 5.(­°òœ
+B
+java:S1144&"-Remove this unused private "reverse1" method.(™‡‚W
