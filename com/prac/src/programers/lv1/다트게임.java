@@ -7,44 +7,65 @@ public class 다트게임 {
     public static void main(String[] args) {
 
         Solution solution = new Solution();
-        int result = solution.solution("1S2D*3T");
+        int result = solution.solution("10S1S0S*");
         System.out.println("solution1 = " + result);
     }
 
     static class Solution {
+        /**
+         * 1. 입렬된 문자열을 한글자씩 순회
+         * 2. 숫자면 변수에 더하고 continue
+         * 3. 보너스, 옵션이면  연산실행후 변수를 비운다
+         * 4. 연산이 끝나면 배열에 할당
+         * 5. 반복
+         */
         public int solution(String dartResult) {
-            int result = 0;
-            String toCalcNumberStr = "";
+            int[] nums = new int[3];
 
+            String toCalcNumberStr = "";
+            int cntNum = 0;
+            
             for (int i = 0; i < dartResult.length(); i++) {
                 char c = dartResult.charAt(i);
 
+                //숫자만들기
                 if (Character.isDigit(c)) {
                     toCalcNumberStr = toCalcNumberStr + c;
                     continue;
                 }
 
-                Integer num = Integer.valueOf(toCalcNumberStr);
-                if (num == 0) {
-                    continue;
+                //연산시작
+                if (toCalcNumberStr.equals("")) {
+                    break;
                 }
+
+                Integer num = Integer.valueOf(toCalcNumberStr);
 
                 Optional<BONUS> bonus = BONUS.getValue(c);
                 Optional<OPTION> option = OPTION.getValue(c);
 
                 if (bonus.isPresent()) {
-                    result += Math.pow(num, bonus.get().value);
+                    nums[cntNum] = (int) Math.pow(num, bonus.get().value);
                 } else if (option.isPresent()) {
-                    result += num * option.get().value;
+                    if (option.get() == OPTION.DOUBLE) {
+                        nums[cntNum] = nums[cntNum] * option.get().value;
+                        if (cntNum != 0) {
+                            nums[cntNum-1] = nums[cntNum-1] * option.get().value;
+                        }
+                    } else {
+                        nums[cntNum] = nums[cntNum] * option.get().value;
+                    }
                 }
 
+                // 다음 문자가 숫자가 아니면 연산종료 숫자판단 종료조건
                 if (i != (dartResult.length() -1)
                         && Character.isDigit(dartResult.charAt(i+1))) {
+                    cntNum++;
                     toCalcNumberStr = "";
                 }
             }
-
-            return result;
+            System.out.println("Arrays.toString(nums) = " + Arrays.toString(nums));
+            return Arrays.stream(nums).reduce(0, (i, e) -> i + e);
         }
 
         enum BONUS {
@@ -68,8 +89,8 @@ public class 다트게임 {
         }
 
         enum OPTION {
-            DOUBLE('*', -1),
-            MINUS('#', 2);
+            DOUBLE('*', 2),
+            MINUS('#', -1);
 
             private final char code;
             private final int value;
