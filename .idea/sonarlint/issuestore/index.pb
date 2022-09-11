@@ -26,3 +26,13 @@ i
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 f
 6com/prac/src/programers/lv1/같은숫자는싫어.java,0\f\0fba46d8e088c564c03cb60fd912d6b95ab8dcf3
+W
+'com/prac/src/programers/lv1/예산.java,2\f\2f842cf54b905cb44864812ab86f37ab75e1ca9d
+l
+<com/prac/src/programers/lv1/부족한금액계산하기.java,e\1\e1bba3a57c2ab63cac5f6e3f3b83f72c0dfad288
+l
+<com/prac/src/programers/lv1/가운데글자가져오기.java,0\4\04eafe702f9f9d9eaa76f7367080c9394d00cdd3
+w
+G.idea/sonarlint/issuestore/6/5/65ffd68ed5e6799632923132a4cfcf56ca22f6f3,a\a\aa6fdf7ccaaa72931d118949c4c85606d61d243f
+w
+G.idea/sonarlint/issuestore/b/2/b24f16d32a831b91e6b99a8f72521ab8a780be62,7\3\735e317a5e8808b29517f91164d68cd90d06a6da
