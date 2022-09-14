@@ -1,0 +1,12 @@
+
+N	java:S106"9Replace this use of System.out or System.err by a logger.(÷ë¼ı
+H
+java:S1135"2Complete the task associated to this TODO comment.(Í‹ˆÂ
+>
+java:S1659R"#Declare "right" on a separate line.(•…Ìøÿÿÿÿ
+S	java:S106["9Replace this use of System.out or System.err by a logger.(Œšºÿÿÿÿÿ
+N	java:S106i"9Replace this use of System.out or System.err by a logger.(ĞÏÀ¤
+L
+java:S1144""1Remove this unused private "findFromLast" method.(Ó¸Ìûÿÿÿÿ
+M
+java:S11446"2Remove this unused private "findFromLast2" method.(ˆĞ¹³ùÿÿÿÿ
