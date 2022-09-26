@@ -13,3 +13,6 @@ Algorism.iml
 .idea/vcs.xml
 /.idea/
 /out/
+/.idea/sonarlint/
+/.idea/
+/out/

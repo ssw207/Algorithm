@@ -19,15 +19,8 @@ K
 com/edu/array/ArraySum.java,e\c\ec619c340827e8eb9bef57511b81a39675518e6b
 i
 9com/prac/src/programers/lv1/두개뽑아서더하기.java,d\4\d4e1b492e2ede1f58e08d73a55762637ee7fbc63
-i
-9com/prac/src/programers/lv1/성격유형검사하기.java,3\d\3d9a81473cda0fad0421d4f1d9d743c3992de011
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 f
 6com/prac/src/programers/lv1/같은숫자는싫어.java,0\f\0fba46d8e088c564c03cb60fd912d6b95ab8dcf3
-W
-'com/prac/src/programers/lv1/예산.java,2\f\2f842cf54b905cb44864812ab86f37ab75e1ca9d
 l
 <com/prac/src/programers/lv1/부족한금액계산하기.java,e\1\e1bba3a57c2ab63cac5f6e3f3b83f72c0dfad288
 l
@@ -36,3 +29,13 @@ w
 G.idea/sonarlint/issuestore/6/5/65ffd68ed5e6799632923132a4cfcf56ca22f6f3,a\a\aa6fdf7ccaaa72931d118949c4c85606d61d243f
 w
 G.idea/sonarlint/issuestore/b/2/b24f16d32a831b91e6b99a8f72521ab8a780be62,7\3\735e317a5e8808b29517f91164d68cd90d06a6da
+k
+;com/prac/src/programers/lv1/문자열내p와y의개수.java,a\3\a3c9ca2ec2b5f926a47f2296320132d767ad42d8
+l
+<com/prac/src/programers/lv1/서울에서김서방찾기.java,c\2\c2ef3d85d989cc6b648859f18e3e56c891f940d6
+i
+9com/prac/src/programers/lv1/성격유형검사하기.java,3\d\3d9a81473cda0fad0421d4f1d9d743c3992de011
+]
+-com/prac/src/programers/lv1/다트게임.java,c\a\caf4d765ffe0d1b054ec3fc65b585f13eca22d43
+W
+'com/prac/src/programers/lv1/예산.java,2\f\2f842cf54b905cb44864812ab86f37ab75e1ca9d
