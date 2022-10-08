@@ -1,7 +1,7 @@
 package com.prac.src.programers.lv1;
 
 //https://school.programmers.co.kr/learn/courses/30/lessons/12934
-public class 정수제곱근파별 {
+public class 정수제곱근판별 {
     public static void main(String[] args) {
         Solution solution = new Solution();
         long solution1 = solution.solution(121);
