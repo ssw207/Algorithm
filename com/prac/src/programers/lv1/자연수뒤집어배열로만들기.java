@@ -12,15 +12,13 @@ public class 자연수뒤집어배열로만들기 {
     
     static class Solution {
         public int[] solution(long n) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(n);
+            sb.reverse();
 
-            char[] chars = (n + "").toCharArray();
-
-            int[] result = new int[chars.length];
-
-            for (int i = 0; i < chars.length; i++) {
-                result[chars.length - 1 - i] = Character.getNumericValue(chars[i]);
-            }
-            return result;
+            return sb.chars()
+                    .map(Character::getNumericValue)
+                    .toArray();
         }
     }
 }
