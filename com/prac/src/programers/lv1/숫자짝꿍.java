@@ -35,13 +35,7 @@ public class 숫자짝꿍 {
         }
 
         private boolean isZero(String result) {
-            for (String s : result.split("")) {
-                if (!"0".equals(s)) {
-                    return false;
-                }
-            }
-
-            return true;
+            return result.charAt(0) == '0';
         }
 
         private String toStr(Map.Entry<String, Long> e) {
