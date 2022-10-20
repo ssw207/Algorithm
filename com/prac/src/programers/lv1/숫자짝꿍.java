@@ -2,59 +2,77 @@ package com.prac.src.programers.lv1;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class 숫자짝꿍 {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        String solution1 = solution.solution("100",	"200");
+        String solution1 = solution.solution("00",	"00");
         System.out.println("solution1 = " + solution1);
     }
 
     static class Solution {
         public String solution(String X, String Y) {
-            List<String> targets = Arrays.asList(X.split(""));
-            Map<String, List<String>> compares = Stream.of(Y.split("")).collect(Collectors.groupingBy(s -> s));
+            Map<String, Long> cntMapX = getCntMap(X);
+            Map<String, Long> cntMapY = getCntMap(Y);
 
-            String collect = targets.stream()
-                    .filter(s -> {
-                        if (!compares.containsKey(s) || compares.get(s).isEmpty()) {
-                            return false;
-                        }
+            Map<String, Long> resultMap = getResult(cntMapX, cntMapY);
 
-                        compares.get(s).remove(s);
-                        return true;
-                    })
-                    .sorted(Comparator.<String, String>comparing(s -> s).reversed())
+            String result = resultMap.entrySet()
+                    .stream()
+                    .sorted(Comparator.<Map.Entry<String, Long>, String>comparing(Map.Entry::getKey).reversed())
+                    .map(e -> toStr(e))
                     .collect(Collectors.joining());
 
-            String result = Optional.ofNullable(collect)
-                    .filter(s -> !s.isBlank())
-                    .orElse("-1");
-            Long.valueOf(result);
-            return ifZeroCompress(result);
-        }
-
-        private Set<String> getSet(String num) {
-            return new HashSet<String>(Arrays.asList(num.split("")));
-        }
-
-        private String ifZeroCompress(String s) {
-            if (!isZeroStr(s)) {
-                return s;
+            if ("".equals(result)) {
+                return "-1";
             }
 
-            return "0";
+            if (isZero(result)) {
+                return "0";
+            }
+
+            return result;
         }
 
-        private boolean isZeroStr(String s) {
-            for (String str : s.split("")) {
-                if (!"0".equals(str)) {
+        private boolean isZero(String result) {
+            for (String s : result.split("")) {
+                if (!"0".equals(s)) {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        private String toStr(Map.Entry<String, Long> e) {
+            StringBuilder sb = new StringBuilder();
+            for (long i = 0; i < e.getValue(); i++) {
+                sb.append(e.getKey());
+            }
+
+            return sb.toString();
+        }
+
+
+        private static Map<String, Long> getResult(Map<String, Long> cntMapX, Map<String, Long> cntMapY) {
+            Map<String, Long> result = new HashMap<>();
+            for (String s : cntMapY.keySet()) {
+                Long cntX = cntMapX.getOrDefault(s, 0L);
+                Long cntY = cntMapY.getOrDefault(s, 0L);
+
+                result.put(s, Long.min(cntX, cntY));
+            }
+
+            return result;
+        }
+
+        private Map<String, Long> getCntMap(String X) {
+            Map<String, Long> map = new HashMap<>();
+
+            for (String str : X.split("")) {
+                map.merge(str, map.getOrDefault(str, 1L), (v1, v2) -> v2 + 1);
+            }
+            return map;
         }
     }
 }
