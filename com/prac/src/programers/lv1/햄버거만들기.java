@@ -9,7 +9,7 @@ import java.util.*;
 public class 햄버거만들기 {
 	public static void main(String[] args) {
 		Solution solution = new Solution();
-		int solution1 = solution.solution(new int[] {2, 1, 1, 2, 3, 1, 2, 3)};
+		int solution1 = solution.solution(new int[] {2, 1, 1, 2, 3, 1, 2, 3});
 		System.out.println("solution1 = " + solution1);
 	}
 
