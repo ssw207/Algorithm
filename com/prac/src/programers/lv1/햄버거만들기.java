@@ -15,28 +15,27 @@ public class 햄버거만들기 {
 
 	static class Solution {
 
+		int cnt = 0;
+
 		public int solution(int[] ingredient) {
 			Stack<Integer> stack = new Stack<>();
 
-			int cnt = 0;
 			for (int next : ingredient) {
-
 				if (isPopReady(stack) && next == 1) {
-					pop(stack);
-					cnt++;
+					clear(stack);
 					continue;
 				}
-
 				stack.add(next);
 			}
 
 			return cnt;
 		}
 
-		private void pop(Stack<Integer> stack) {
+		private void clear(Stack<Integer> stack) {
 			stack.pop();
 			stack.pop();
 			stack.pop();
+			cnt++;
 		}
 
 		private boolean isPopReady(Stack<Integer> stack) {
