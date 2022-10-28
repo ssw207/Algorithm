@@ -19,15 +19,15 @@ public class 햄버거만들기 {
 			Stack<Integer> stack = new Stack<>();
 
 			int cnt = 0;
-			for (int i : ingredient) {
+			for (int next : ingredient) {
 
-				if (isPopReady(stack) && i == 1) {
+				if (isPopReady(stack) && next == 1) {
 					pop(stack);
 					cnt++;
 					continue;
 				}
 
-				stack.add(i);
+				stack.add(next);
 			}
 
 			return cnt;
@@ -40,7 +40,7 @@ public class 햄버거만들기 {
 		}
 
 		private boolean isPopReady(Stack<Integer> stack) {
-			return stack.size() > 3
+			return stack.size() > 2
 				&& stack.get(stack.size() - 3) == 1
 				&& stack.get(stack.size() - 2) == 2
 				&& stack.get(stack.size() - 1) == 3;
