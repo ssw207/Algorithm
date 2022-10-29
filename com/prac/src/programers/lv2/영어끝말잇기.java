@@ -7,7 +7,7 @@ public class 영어끝말잇기 {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] solution1 = solution.solution(2, new String[] {"hello", "one", "even", "never", "now", "world", "draw"});
+        int[] solution1 = solution.solution(2, new String[]{"hello", "one", "even", "never", "now", "world", "draw"});
         System.out.println("Arrays.toString(so) = " + Arrays.toString(solution1));
     }
 
@@ -25,14 +25,14 @@ public class 영어끝말잇기 {
                 Set<String> personWords = getPersonWords();
 
                 if (isWongWord(word)) {
-                    return new int[] {person, personWords.size() + 1};
+                    return new int[]{person, personWords.size() + 1};
                 }
 
                 putWord(word, personWords);
                 changeToNextPersonNumber(max);
             }
 
-            return new int[] {0, 0};
+            return new int[]{0, 0};
         }
 
         private Set<String> getPersonWords() {
@@ -41,12 +41,12 @@ public class 영어끝말잇기 {
         }
 
         private boolean isWongWord(String word) {
-            if (beforeWord == "") {
-                return false;
-            }
-
             if (totalMap.get(word) != null) {
                 return true;
+            }
+
+            if (beforeWord == "") {
+                return false;
             }
 
             char last = beforeWord.charAt(beforeWord.length() - 1);

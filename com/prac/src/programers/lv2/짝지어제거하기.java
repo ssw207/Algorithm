@@ -34,7 +34,6 @@ public class 짝지어제거하기 {
                     stack.pop();
                     continue;
                 }
-
                 stack.add(c);
             }
 
