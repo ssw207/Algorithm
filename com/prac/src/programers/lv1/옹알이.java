@@ -28,13 +28,12 @@ public class 옹알이 {
         }
 
         private boolean isValidStr(String str) {
-            String s = "";
             for (String string : strings) {
-                s = str.replaceFirst(string, "");
-                System.out.println("string = " + s);
+                str = str.replaceFirst(string, "");
+                //System.out.println("str = " + str);
             }
 
-            return s.equals("");
+            return str.equals("");
         }
     }
 }
