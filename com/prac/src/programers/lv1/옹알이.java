@@ -11,9 +11,6 @@ public class 옹알이 {
     }
 
     static class Solution {
-        private String[] strings = {"aya", "ye", "woo", "ma"};
-        private String[] notValidStrs = {"ayaaya", "yeye", "woowoo", "mama"};
-
         public int solution(String[] babbling) {
             int answer = 0;
 
@@ -26,24 +23,18 @@ public class 옹알이 {
         }
 
         private boolean isValidStr(String str) {
-            for (String notValidStr : notValidStrs) {
-                if (str.contains(notValidStr)) {
-                    return false;
-                }
+            String invalidPattern = "(aya|ye|woo|ma)\\1";
+            String validPattern = "^(aya|ye|woo|ma)+$";
+
+            if (str.matches(invalidPattern)) {
+                return false;
             }
 
-            int before = str.length();
-            int after = 0;
-            while (before != after) {
-                for (String string : strings) {
-                    before = str.length();
-                    str = str.replaceFirst(string, "");
-                    after = str.length();
-                    //System.out.println("str = " + str);
-                }
+            if (!str.matches(validPattern)) {
+                return false;
             }
 
-            return str.equals("");
+            return true;
         }
     }
 }
