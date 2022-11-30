@@ -5,7 +5,7 @@ public class 옹알이 {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        //int solution1 = solution.solution(new String[] {"ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"});
+//        int solution1 = solution.solution(new String[] {"ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"});
         int solution1 = solution.solution(new String[]{"wooyemawooye"});
         System.out.println("solution1 = " + solution1);
     }
@@ -30,11 +30,7 @@ public class 옹알이 {
                 return false;
             }
 
-            if (!str.matches(validPattern)) {
-                return false;
-            }
-
-            return true;
+            return str.matches(validPattern);
         }
     }
 }
